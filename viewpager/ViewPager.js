@@ -113,12 +113,13 @@ export default class ViewPager extends Component {
         let {x} = e.nativeEvent.contentOffset, offset, position = Math.floor(x / this.state.width)
         offset = x / this.state.width - position
 
+        console.log("Offset : ", offset)
 //        if (this.props.onPageScroll) this.props.onPageScroll({offset, position})
 
-        if (this.props.onPageSelected && offset === 0) {
+        /*if (this.props.onPageSelected && offset === 0) {
             this.props.onPageSelected({position})
             this.props.onPageScrollStateChanged && this._setScrollState(SCROLL_STATE.idle)
-        }
+        }*/
     }
 
     _onScrollViewLayout (event) {
