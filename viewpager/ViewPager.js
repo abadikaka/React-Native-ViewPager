@@ -88,7 +88,7 @@ export default class ViewPager extends Component {
             showsHorizontalScrollIndicator: false,
             showsVerticalScrollIndicator: false,
             children: this._childrenWithOverridenStyle(),
-            contentOffset: {x: this.state.width * initialPage, y: 0},
+            contentOffset: {x: this.state.width * initialPage + 100, y: 0},
             decelerationRate: 0.9,
             onScroll: needMonitorScroll ? this._onScrollOnIOS : null,
             scrollEventThrottle: needMonitorScroll ? ( this.props.onPageScroll ? 8 : 1) : 0
@@ -163,7 +163,6 @@ export default class ViewPager extends Component {
     }
 
     setPage (selectedPage) {
-        console.log("au",selectedPage)
         if (Platform.OS === 'ios') this.refs[SCROLLVIEW_REF].scrollTo({x: this.state.width * selectedPage})
         else {
             this.refs[VIEWPAGER_REF].setPage(selectedPage)
