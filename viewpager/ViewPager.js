@@ -74,8 +74,6 @@ export default class ViewPager extends Component {
     }
 
     _renderOnIOS () {
-        console.log(this.props.isLoop)
-        console.log(this.props.children)
         let childrenCount = this.props.children ? this.props.children.length : 0
         let initialPage = Math.min(Math.max(0, this.props.initialPage), childrenCount - 1)
         let needMonitorScroll = !!this.props.onPageScroll || !!this.props.onPageSelected || !!this.props.onPageScrollStateChanged
@@ -113,13 +111,12 @@ export default class ViewPager extends Component {
         let {x} = e.nativeEvent.contentOffset, offset, position = Math.floor(x / this.state.width)
         offset = x / this.state.width - position
 
-        console.log("Offset : ", offset)
-//        if (this.props.onPageScroll) this.props.onPageScroll({offset, position})
+        if (this.props.onPageScroll) this.props.onPageScroll({offset, position})
 
-        /*if (this.props.onPageSelected && offset === 0) {
+        if (this.props.onPageSelected && offset === 0) {
             this.props.onPageSelected({position})
             this.props.onPageScrollStateChanged && this._setScrollState(SCROLL_STATE.idle)
-        }*/
+        }
     }
 
     _onScrollViewLayout (event) {
@@ -151,9 +148,9 @@ export default class ViewPager extends Component {
     }
 
     _setScrollState (scrollState) {
-        if (scrollState === this._scrollState) return
-        this.props.onPageScrollStateChanged && this.props.onPageScrollStateChanged(scrollState)
-        this._scrollState = scrollState
+        // if (scrollState === this._scrollState) return
+        // this.props.onPageScrollStateChanged && this.props.onPageScrollStateChanged(scrollState)
+        // this._scrollState = scrollState
     }
 
     setPageWithoutAnimation (selectedPage) {
