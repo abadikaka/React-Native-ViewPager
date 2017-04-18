@@ -163,13 +163,8 @@ export default class ViewPager extends Component {
     }
 
     setPage (selectedPage) {
-        if (Platform.OS === 'ios') {
-            if(this.props.isLoop){
-                this.refs[SCROLLVIEW_REF].scrollTo({x: this.state.width * selectedPage})
-            }else{
-                this.refs[SCROLLVIEW_REF].scrollTo({x: this.state.width * selectedPage})
-            }
-        }else {
+        if (Platform.OS === 'ios') this.refs[SCROLLVIEW_REF].scrollTo({x: this.state.width * selectedPage})
+        else {
             this.refs[VIEWPAGER_REF].setPage(selectedPage)
             if (this.props.onPageSelected) this.props.onPageSelected({position: selectedPage})
         }
