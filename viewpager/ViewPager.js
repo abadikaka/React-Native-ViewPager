@@ -148,9 +148,9 @@ export default class ViewPager extends Component {
     }
 
     _setScrollState (scrollState) {
-        // if (scrollState === this._scrollState) return
-        // this.props.onPageScrollStateChanged && this.props.onPageScrollStateChanged(scrollState)
-        // this._scrollState = scrollState
+        if (scrollState === this._scrollState) return
+        this.props.onPageScrollStateChanged && this.props.onPageScrollStateChanged(scrollState)
+        this._scrollState = scrollState
     }
 
     setPageWithoutAnimation (selectedPage) {
@@ -163,8 +163,13 @@ export default class ViewPager extends Component {
     }
 
     setPage (selectedPage) {
-        if (Platform.OS === 'ios') this.refs[SCROLLVIEW_REF].scrollTo({x: this.state.width * selectedPage})
-        else {
+        if (Platform.OS === 'ios') {
+            if(this.props.isLoop){
+                this.refs[SCROLLVIEW_REF].scrollTo({x: this.state.width * selectedPage})
+            }else{
+                this.refs[SCROLLVIEW_REF].scrollTo({x: this.state.width * selectedPage})
+            }
+        }else {
             this.refs[VIEWPAGER_REF].setPage(selectedPage)
             if (this.props.onPageSelected) this.props.onPageSelected({position: selectedPage})
         }

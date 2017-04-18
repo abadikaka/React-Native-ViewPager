@@ -98,6 +98,9 @@ export default class IndicatorViewPager extends Component {
 
     _goToNextPage () {
         let nextIndex = (this._currentIndex + 1) % this._childrenCount
+        if(this.props.isLoop){
+            nextIndex = (this._currentIndex + 1)
+        }
         this.setPage(nextIndex)
     }
 
